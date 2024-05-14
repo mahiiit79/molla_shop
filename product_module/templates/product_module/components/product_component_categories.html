@@ -1,0 +1,21 @@
+            <h3 class="widget-title">
+    <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true"
+                                            aria-controls="widget-1">
+                                            دسته بندی
+    </a>
+    </h3><!-- End .widget-title -->
+
+           {% for category in categories %}
+             <div class="collapse show" id="widget-1">
+
+                 <div class="filter-items filter-items-count">
+                     <div class="custom-control custom-checkbox">
+                                                     {% comment %}   <input type="checkbox" class="custom-control-input" id="cat-1">
+                                                      <label class="custom-control-label" for="cat-1">{{ category.title }}</label>{% endcomment %}
+                         <h6><a href="{% url 'product-categories-list' cat=category.url_title %}">{{ category.title }}</a></h6>
+                     </div><!-- End .custom-checkbox -->
+                     <span class="item-count"></span>
+                 </div><!-- End .filter-items -->
+
+                                    </div><!-- End .collapse -->
+                {% endfor %}

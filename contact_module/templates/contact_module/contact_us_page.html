@@ -1,0 +1,175 @@
+{% extends 'shared/_layout.html' %}
+
+{% block title %}
+تماس با ما
+{% endblock %}
+
+{% block content %}
+   <main class="main">
+            <div class="container">
+                <div class="page-header page-header-big text-center"
+                    style="background-image: url('/static/images/contact-header-bg.jpg')">
+                    <h1 class="page-title text-white">تماس با ما<span class="text-white">ارتباط خود را با ما حفظ
+                            کنید</span></h1>
+                </div><!-- End .page-header -->
+            </div><!-- End .container -->
+
+            <div class="page-content pb-0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 mb-2 mb-lg-0">
+                            <h2 class="title mb-1">اطلاعات تماس</h2><!-- End .title mb-2 -->
+                            <p class="mb-3">{{ site_setting.about_us_text }}</p>
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <div class="contact-info">
+                                        <h3>دفتر</h3>
+
+                                        <ul class="contact-list">
+                                            <li>
+                                                <i class="icon-map-marker"></i>
+                                              {{ site_setting.address }}
+                                            </li>
+                                            <li>
+                                                <i class="icon-phone"></i>
+                                                <a href="tel:#">{{ site_setting.phone }}</a>
+                                            </li>
+                                            <li>
+
+                                                {% if site_setting.email %}
+                                                    <i class="icon-envelope"></i>
+                                                <a href="mailto:#">{{ site_setting.email }}</a>
+                                                {% endif %}
+
+                                            </li>
+                                        </ul><!-- End .contact-list -->
+                                    </div><!-- End .contact-info -->
+                                </div><!-- End .col-sm-7 -->
+
+                                <div class="col-sm-5">
+                                    <div class="contact-info">
+                                        <h3>ساعت کار دفتر</h3>
+
+                                        <ul class="contact-list">
+                                            <li>
+                                                <i class="icon-clock-o"></i>
+                                                <span class="text-dark">شنبه تا چهارشنبه</span> <br>11 صبح تا 7 عصر
+                                            </li>
+                                            <li>
+                                                <i class="icon-calendar"></i>
+                                                <span class="text-dark">پنج شنبه</span> <br>11 صبح تا 5 عصر
+                                            </li>
+                                        </ul><!-- End .contact-list -->
+                                    </div><!-- End .contact-info -->
+                                </div><!-- End .col-sm-5 -->
+                            </div><!-- End .row -->
+                        </div><!-- End .col-lg-6 -->
+                        <div class="col-lg-6">
+                            <h2 class="title mb-1">سوالی دارید؟</h2><!-- End .title mb-2 -->
+                            <p class="mb-2">با استفاده از فرم زیر می توانید با ما ارتباط برقرار کنید</p>
+
+                            <form action="{% url 'contact-us' %}" class="contact-form mb-3" method="post">
+                                {% csrf_token %}
+
+                                 <div class="col-md-12 form-group">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
+                                {{form.email.errors }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                {{ form.full_name.label_tag }}
+                                {{ form.full_name }}
+                                {{ form.full_name.errors }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                {{ form.title.label_tag }}
+                                {{form.title }}
+                                {{ form.title.errors }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                {{ form.message.label_tag }}
+                                {{ form.message }}
+                                {{form.message.errors }}
+                            </div>
+
+
+
+
+
+                         {% comment %}   <div class="col-md-12 form-group">
+                                {{ contact_form.email.label_tag }}
+                                {{ contact_form.email }}
+                                {{ contact_form.email.errors }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                {{ contact_form.full_name.label_tag }}
+                                {{ contact_form.full_name }}
+                                {{ contact_form.full_name.errors }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                {{ contact_form.title.label_tag }}
+                                {{ contact_form.title }}
+                                {{ contact_form.title.errors }}
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                {{ contact_form.message.label_tag }}
+                                {{ contact_form.message }}
+                                {{ contact_form.message.errors }}
+                            </div>{% endcomment %}
+
+                            {% comment %}{{ contact_form }}{% endcomment %}
+
+
+                           {% comment %}     <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="cname" class="sr-only">نام</label>
+                                        <input type="text" class="form-control" id="cname"
+                                            placeholder="نام خود را وارد کنید *" required>
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-6">
+                                        <label for="cemail" class="sr-only">ایمیل</label>
+                                        <input type="email" class="form-control" id="cemail"
+                                            placeholder="ایمیل خود را وارد کنید *" required>
+                                    </div><!-- End .col-sm-6 -->
+                                </div><!-- End .row -->
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="cphone" class="sr-only">شماره موبایل</label>
+                                        <input type="tel" class="form-control" id="cphone"
+                                            placeholder="شماره موبایل خود را وارد کنید">
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-6">
+                                        <label for="csubject" class="sr-only">موضوع</label>
+                                        <input type="text" class="form-control" id="csubject"
+                                            placeholder="موضوع پیام شما">
+                                    </div><!-- End .col-sm-6 -->
+                                </div><!-- End .row -->
+
+                                <label for="cmessage" class="sr-only">پیام</label>
+                                <textarea class="form-control" cols="30" rows="4" id="cmessage" required
+                                    placeholder="متن پیام شما *"></textarea>{% endcomment %}
+
+                                <button type="submit" class="btn btn-outline-primary-2 btn-minwidth-sm float-right">
+                                    <span>تایید و ارسال</span>
+                                    <i class="icon-long-arrow-left"></i>
+                                </button>
+                            </form><!-- End .contact-form -->
+                        </div><!-- End .col-lg-6 -->
+                    </div><!-- End .row -->
+
+                    <hr class="mt-4 mb-5">
+
+                </div><!-- End .container -->
+
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+{% endblock %}

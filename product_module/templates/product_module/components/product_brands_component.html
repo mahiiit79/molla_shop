@@ -1,0 +1,28 @@
+    <div class="widget widget-collapsible">
+                                    <h3 class="widget-title">
+                                        <a data-toggle="collapse" href="#widget-4" role="button" aria-expanded="true"
+                                            aria-controls="widget-4">
+                                            برند
+                                        </a>
+                                    </h3><!-- End .widget-title -->
+
+                                    <div class="collapse show" id="widget-4">
+                                        <div class="widget-body">
+                                            <div class="filter-items">
+                                               {% for brand in brands %}
+                                                 <div class="filter-item">
+                                                    <div class="custom-control custom-checkbox">
+                                                        {% comment %}<input type="checkbox" class="custom-control-input"
+                                                            id="brand-1">
+                                                        <a href="{% url 'product-by-brands-list' brand=brand.url_title %}"><label class="custom-control-label" for="brand-1">{{ brand.title }}({{ brand.products_count }})</label></a>{% endcomment %}
+                                                          <li><a href="{% url 'product-by-brands-list' brand=brand.url_title %}"> <span
+                                                     class="pull-left">({{ brand.products_count }})</span>{{ brand.title }}</a></li>
+                                                    </div><!-- End .custom-checkbox -->
+                                                </div><!-- End .filter-item -->
+                                               {% endfor %}
+
+
+                                            </div><!-- End .filter-items -->
+                                        </div><!-- End .widget-body -->
+                                    </div><!-- End .collapse -->
+                                </div><!-- End .widget -->

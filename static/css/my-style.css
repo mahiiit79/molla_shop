@@ -1,0 +1,7 @@
+.details1 a {
+    text-align: center;
+
+}
+.details1 a:active {
+    color: #e0a800;
+}

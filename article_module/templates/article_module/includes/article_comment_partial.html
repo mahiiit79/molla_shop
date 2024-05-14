@@ -1,0 +1,66 @@
+{% load thumbnail %}
+{% load poll_extras %}
+
+                                <h3 class="title"> نظرات ({{ comments_count }})</h3><!-- End .title -->
+                                  <ul>
+                                        {% for comment in comments %}
+                                             <li id="single_comment_box_{{ comment.id }}">
+                                        <div class="comment" >
+                                            <figure class="comment-media">
+                                                           <a href="">
+                                    {% if article.author.avatar %}
+                                         {% thumbnail article.author.avatar "50x50" quality=95 crop='center' as im %}
+                                        <img src="{{ im.url }}">
+                                    {% endthumbnail %}
+                                        {% else %}
+                                         <img src="/static/images/blog/single/author.jpg" alt="User name">
+                                    {% endif %}</a>
+                                             </figure>
+
+
+                                            <div class="comment-body">
+                                                   <a class="comment-reply" onclick="fillParentId({{ comment.id }})">پاسخ</a>
+                                                <div class="comment-user">
+                                                    <h4><a href="#">{{ comment.user }}</a></h4>
+                                                   <span class="comment-date">{{ comment.create_date | show_jalali_date }}</span>
+                                                    <span class="comment-date">{{ comment.create_date |time }}</span>
+                                                </div> <!-- End .comment-user -->
+
+                                                <div class="comment-content">
+                                                    <p>
+                                                        {{ comment.text }}
+                                                    </p>
+                                                </div><!-- End .comment-content -->
+                                            </div><!-- End .comment-body -->
+                                        </div><!-- End .comment -->
+
+                                        <ul>
+                                            {% for sub_comment in comment.articlecomment_set.all  %}
+                                           <li id="single_comment_box_{{ comment.id }}">
+                                                <div class="comment" id="single_comment_box_{{ comment.id }}">
+                                                    <figure class="comment-media">
+                                                        <a href="#">
+                                                            <img src="/static/images/blog/comments/2.jpg"
+                                                                alt="">
+                                                        </a>
+                                                    </figure>
+
+                                                    <div class="comment-body">
+
+                                                        <div class="comment-user">
+                                                            <h4><a href="#">{{ sub_comment.user }}</a></h4>
+                                                           <span class="comment-date">{{ sub_comment.create_date | show_jalali_date }}</span>
+                                                    <span class="comment-date">{{ sub_comment.create_date |time }}</span>
+
+                                                        </div><!-- End .comment-user -->
+
+                                                        <div class="comment-content">
+                                                            <p>{{ sub_comment.text }}</p>
+                                                        </div><!-- End .comment-content -->
+                                                    </div><!-- End .comment-body -->
+                                                </div><!-- End .comment -->
+                                            </li>
+                                        </ul>
+                                      {% endfor %}
+                                  {% endfor %}
+                                  </ul>

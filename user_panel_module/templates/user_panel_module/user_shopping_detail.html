@@ -1,0 +1,54 @@
+{% extends 'shared/_layout.html' %}
+{% load render_partial%}
+{% load poll_extras %}
+
+
+
+{% block title %}
+جزئیات خرید
+{% endblock %}
+
+
+{% block content %}
+<main class="main">
+            <div class="page-header text-center" style="background-image: url('/static/images/page-header-bg.jpg')">
+                <div class="container">
+                    <h1 class="page-title">داشبورد<span>فروشگاه</span></h1>
+                </div><!-- End .container -->
+            </div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
+
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+                <div class="dashboard">
+                    <div class="container">
+                        <div class="row">
+                        {% render_partial 'user_panel_module.views.user_panel_menu_component' %}
+
+                            <table class="previous-purchase">
+                <thead>
+                    <tr class="previous-purchase-tr">
+                        <th class="previous-purchase-title text-right">شناسه</th>
+                        <th class="previous-purchase-title text-right">محصول</th>
+                        <th class="previous-purchase-title text-right">تعداد</th>
+                        <th class="previous-purchase-title text-right">قیمت نهایی خرید</th>
+                    </tr>
+                </thead>
+                {% for detail in order.orderdetail_set.all %}
+                <tbody>
+                    <tr class="previous-purchase-tr">
+                        <td class="previous-purchase-content text-right">{{ detail.id }}</td>
+                        <td class="previous-purchase-content text-right">{{ detail.product.title }}</td>
+                        <td class="previous-purchase-content text-right">{{ detail.count }}</td>
+                        <td class="previous-purchase-content text-right">{{ detail.final_price | three_digits_currency }}</td>
+                    </tr>
+                </tbody>
+                                {% endfor %}
+	            </table>
+                        </div><!-- End .row -->
+                    </div><!-- End .container -->
+                </div><!-- End .dashboard -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+{% endblock %}

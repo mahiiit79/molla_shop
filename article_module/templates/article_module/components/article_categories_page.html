@@ -1,0 +1,11 @@
+<h3 class="widget-title"> دسته بندی مقالات</h3><!-- End .widget-title -->
+
+                                    <ul>
+                                        {% for article_main_category in article_main_categories %}
+                                            <li><a href="{% url 'articles_by_category_list' category=article_main_category.url_title%}">
+                                                {{ article_main_category.title }}
+                                                <span>3</span>
+                                            </a></li>
+                                        {% endfor %}
+                                    </ul>
+{# ویدیو98 برای زیرشاخه داشتن  #}

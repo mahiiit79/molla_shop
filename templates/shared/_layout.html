@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load render_partial %}
+<html lang="en" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Molla - Bootstrap eCommerce Template">
+    {% include 'shared/header_references.html' %}
+    {% block header_references %}{% endblock %}
+</head>
+
+<body>
+    <div class="page-wrapper">
+    {% render_partial 'home_module.views.site_header_component' %}
+    {% block content %}{% endblock %}
+   {% render_partial 'home_module.views.site_footer_component' %}
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="بازگشت به بالا"><i class="icon-arrow-up"></i></button>
+    {% render_partial 'home_module.views.mobile_menu' %}
+    {% include 'shared/footer_references.html' %}
+    {% block footer_references %}{% endblock %}
+</body>
+
+</html>
